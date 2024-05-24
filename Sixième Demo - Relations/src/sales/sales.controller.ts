@@ -13,8 +13,10 @@ export class SalesController {
   @Post()
   @UseGuards(AuthGuard)
   @Serialize(SaleDto)
-  createSale(@Body() body: CreateSaleDto, @CurrentUser() user: User) {
-    return this._salesService.create(body, user);
+  async createSale(@Body() body: CreateSaleDto, @CurrentUser() user: User) {
+    const sale = await this._salesService.create(body, user);
+
+    return sale;
   }
 
   @Get('/:id')

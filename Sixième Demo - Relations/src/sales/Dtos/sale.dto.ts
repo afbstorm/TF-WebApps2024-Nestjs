@@ -17,13 +17,14 @@ export class SaleDto {
   model: string;
 
   @Expose()
-  garage: string;
-
-  @Expose()
   mileage: number;
 
   // obj :::: sale entity
   @Transform(({ obj }) => obj.user.id) // Va créer un nouvel objet a partir d'un objet existant
   @Expose()
   userId: number;
+
+  @Transform(({ obj }) => obj.garage.id)
+  @Expose()
+  garageId: number;
 }
